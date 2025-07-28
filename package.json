@@ -1,0 +1,16 @@
+{
+  "name": "github-snake",
+  "version": "1.0.0",
+  "description": "Advanced GitHub contribution snake",
+  "main": "index.js",
+  "scripts": {
+    "fetch": "node scripts/fetchContributions.js",
+    "build": "node src/snake.js && node src/render.js"
+  },
+  "author": "valerie-ekeigwe",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/graphql": "^5.0.6",
+    "dotenv": "^16.6.1"
+  }
+}
