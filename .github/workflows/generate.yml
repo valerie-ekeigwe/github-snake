@@ -1,32 +1,19 @@
-name: Generate Snake Animation
+name: Generate GitHub Contribution Snake (Realistic)
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *" # runs every day at midnight
-
-permissions:
-  contents: write
+    - cron: "0 0 * * *" # every day at midnight
+  workflow_dispatch:
 
 jobs:
-  generate:
+  github-metrics:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Generate GitHub Contribution Snake
-        uses: Platane/snk@v3
+      - uses: lowlighter/metrics@latest
         with:
-          github_user_name: valerie-ekeigwe
-          outputs: |
-            ./output/github-contribution-grid-snake.svg
-            ./output/github-contribution-grid-snake-dark.svg?palette=github-dark
-
-      - name: Push to output branch
-        uses: crazy-max/ghaction-github-pages@v4
-        with:
-          target_branch: output
-          build_dir: output
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          filename: github-metrics.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          plugin_contributors: yes
+          plugin_calendar: yes
+          plugin_calendar_limit: 1
